@@ -26,15 +26,38 @@
       You need to enable JavaScript to run this app.
     </noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
+
+  <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.0.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.0.1/firebase-database.js"></script>
+
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCSBNe66HYkUe7DOETjMEyQwcR24qKR0Yc",
+    authDomain: "iconcur-8a7f9.firebaseapp.com",
+    databaseURL: "https://iconcur-8a7f9.firebaseio.com",
+    projectId: "iconcur-8a7f9",
+    storageBucket: "iconcur-8a7f9.appspot.com",
+    messagingSenderId: "135581222114"
+  };
+  firebase.initializeApp(config);
+  //var database = firebase.database();
+  
+  firebase.database().ref('users/' + 1).set({
+    username: 'name',
+    email: 'email',
+    profile_picture : 'imageUrl'
+  });
+
+
+  var event = firebase.database().ref('evets/' + 1 + '/starCount');
+
+
+  var starCountRef = firebase.database().ref('posts/' + 1 + '/starCount');
+  starCountRef.on('value', function(snapshot) {
+  console.log("starcount: " + snapshot.val());
+});
+</script>
 </html>
