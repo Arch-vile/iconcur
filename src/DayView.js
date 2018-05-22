@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import firebaseApp from "./firebase";
+import TimeSlider from "./slider";
 
 class DayView extends Component {
   constructor(props) {
@@ -67,6 +68,7 @@ class Event extends Component {
           {this.props.data.description} - {this.props.data.location}
         </h2>
         <hr />
+        {participants(this.props.data.participants)}
         <div>
           <h2>Comments:</h2>
           <em>
@@ -83,5 +85,17 @@ class Event extends Component {
     );
   }
 }
+
+const participants = players => (
+  <div>
+    {players &&
+      players.map(p => (
+        <div>
+          <div className="fl">{p.name}</div>
+          <TimeSlider />{" "}
+        </div>
+      ))}
+  </div>
+);
 
 export default DayView;
