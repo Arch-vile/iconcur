@@ -26,7 +26,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">I Concur</h1>
+          <h1 className="App-title">iConcur</h1>
         </header>
         <p className="App-intro">
           To get started, select a date.
