@@ -35,9 +35,10 @@ class DayView extends Component {
     if (this.firebaseCallback)
       this.firebaseRef.off("value", this.firebaseCallback);
 
-    var ref = "events/" + this.props.selectedDate;
-    console.log("Fetching events: " + ref);
-    this.firebaseRef = firebaseApp.database().ref(ref);
+    this.baseRef = "events/" + this.props.selectedDate;
+    console.log("Fetching events: " + this.baseRef);
+    this.database = firebaseApp.database();
+    this.firebaseRef = this.database.ref(this.baseRef);
     this.firebaseCallback = this.firebaseRef.on("value", snap => {
       console.log("Updating events from server: " + JSON.stringify(snap.val()));
       this.setState({ events: snap.val() });
@@ -49,7 +50,15 @@ class DayView extends Component {
     for (var propKey in events) {
       if (events.hasOwnProperty(propKey)) {
         var eventData = events[propKey];
-        comps.push(<Event data={eventData} key={propKey} />);
+        comps.push(
+          <Event
+            data={eventData}
+            key={propKey}
+            index={propKey}
+            database={this.database}
+            baseRef={this.baseRef}
+          />
+        );
       }
     }
     return comps;
@@ -61,17 +70,26 @@ class Event extends Component {
     super(props);
   }
 
-  updatePlayer = player => {
+  updatePlayer = (player, index, range) => {
     console.log("Updating player: " + player);
+    const playerRef =
+      this.props.baseRef + "/" + this.props.index + `/participants/${index}`;
+    console.log(playerRef);
+    this.props.database.ref(playerRef + "/start").set(range[0]);
+    this.props.database.ref(playerRef + "/end").set(range[1]);
   };
 
   participants = players => (
     <div>
       {players &&
-        players.map(p => (
+        players.map((p, i) => (
           <div>
             <div className="fl">{p.name}</div>
-            <TimeSlider player={p} timeChanged={this.updatePlayer} />
+            <TimeSlider
+              player={p}
+              playerIndex={i}
+              timeChanged={this.updatePlayer}
+            />
           </div>
         ))}
     </div>

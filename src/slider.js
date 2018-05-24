@@ -21,16 +21,16 @@ const marks = {
 class TimeSlider extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      range: [props.player.start || 9, props.player.end || 12],
-      player: props.player
-    };
+    // this.state = {
+    //   range: [props.player.start || 9, props.player.end || 12],
+    //   player: props.player
+    // };
     this.valueChange = this.valueChange;
   }
 
   valueChange = newValue => {
     this.setState({ range: newValue });
-    this.props.timeChanged(this.state.player);
+    this.props.timeChanged(this.props.player, this.props.playerIndex, newValue);
   };
 
   render() {
@@ -44,7 +44,7 @@ class TimeSlider extends Component {
             step={0.5}
             onChange={this.valueChange}
             defaultValue={[9, 12]}
-            value={[this.state.range[0], this.state.range[1]]}
+            value={[this.props.player.start || 9, this.props.player.end || 12]}
           />
         </div>
       </div>
