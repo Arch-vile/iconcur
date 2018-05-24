@@ -61,6 +61,22 @@ class Event extends Component {
     super(props);
   }
 
+  updatePlayer = player => {
+    console.log("Updating player: " + player);
+  };
+
+  participants = players => (
+    <div>
+      {players &&
+        players.map(p => (
+          <div>
+            <div className="fl">{p.name}</div>
+            <TimeSlider player={p} timeChanged={this.updatePlayer} />
+          </div>
+        ))}
+    </div>
+  );
+
   render() {
     return (
       <div>
@@ -68,7 +84,7 @@ class Event extends Component {
           {this.props.data.description} - {this.props.data.location}
         </h2>
         <hr />
-        {participants(this.props.data.participants)}
+        {this.participants(this.props.data.participants)}
         <div>
           <h2>Comments:</h2>
           <em>
@@ -85,17 +101,5 @@ class Event extends Component {
     );
   }
 }
-
-const participants = players => (
-  <div>
-    {players &&
-      players.map(p => (
-        <div>
-          <div className="fl">{p.name}</div>
-          <TimeSlider />{" "}
-        </div>
-      ))}
-  </div>
-);
 
 export default DayView;

@@ -18,11 +18,21 @@ const marks = {
   "20": "20:00"
 };
 
-function log(value) {
-  console.log(value); //eslint-disable-line
-}
-
 class TimeSlider extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      range: [props.player.start || 9, props.player.end || 12],
+      player: props.player
+    };
+    this.valueChange = this.valueChange;
+  }
+
+  valueChange = newValue => {
+    this.setState({ range: newValue });
+    this.props.timeChanged(this.state.player);
+  };
+
   render() {
     return (
       <div className="fl">
@@ -32,8 +42,9 @@ class TimeSlider extends Component {
             max={20}
             marks={marks}
             step={0.5}
-            onChange={log}
-            defaultValue={[10, 11]}
+            onChange={this.valueChange}
+            defaultValue={[9, 12]}
+            value={[this.state.range[0], this.state.range[1]]}
           />
         </div>
       </div>
