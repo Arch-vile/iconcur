@@ -1,5 +1,8 @@
 import "rc-slider/assets/index.css";
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { updateParticipant } from "./actions";
+
 import Slider from "rc-slider";
 
 const style = { width: 400, marginLeft: 20, marginBottom: 20 };
@@ -18,20 +21,31 @@ const marks = {
   "20": "20:00"
 };
 
-class TimeSlider extends Component {
+class TimeSlider extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   range: [props.player.start || 9, props.player.end || 12],
-    //   player: props.player
-    // };
-    this.valueChange = this.valueChange;
+    this.state = { ...props.participant };
+    this.valueChange = this.valueChange.bind(this);
   }
 
-  valueChange = newValue => {
-    this.setState({ range: newValue });
-    this.props.timeChanged(this.props.player, this.props.playerIndex, newValue);
-  };
+  static getDerivedStateFromProps(props, state) {
+    return { ...props.participant };
+  }
+
+  valueChange(newRange) {
+    const newState = {
+      ...this.state,
+      start: newRange[0],
+      end: newRange[1]
+    };
+
+    this.setState(state => {
+      console.log("new state: " + JSON.stringify(newState));
+      return newState;
+    });
+
+    this.props.foo(newState);
+  }
 
   render() {
     return (
@@ -44,7 +58,7 @@ class TimeSlider extends Component {
             step={0.5}
             onChange={this.valueChange}
             defaultValue={[9, 12]}
-            value={[this.props.player.start || 9, this.props.player.end || 12]}
+            value={[this.state.start || 9, this.state.end || 12]}
           />
         </div>
       </div>
@@ -52,4 +66,12 @@ class TimeSlider extends Component {
   }
 }
 
-export default TimeSlider;
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    foo: participant => dispatch(updateParticipant(participant))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TimeSlider);

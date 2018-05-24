@@ -1,25 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
-import Calendar from "rc-calendar";
+import CalendarPanel from "./calendarPanel";
 import DayView from "./DayView";
-import "rc-calendar/assets/index.css";
-import moment from "moment";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedDate: "2018-05-18", //moment().format("YYYY-MM-DD"),
-      foo: "bar"
-    };
-  }
-
-  onDateChange = newDate => {
-    console.log("Clicked date: " + newDate.format("YYYY-MM-DD"));
-    this.setState({ selectedDate: newDate.format("YYYY-MM-DD") });
-  };
-
   render() {
     return (
       <div className="App">
@@ -28,10 +12,10 @@ class App extends Component {
         </header>
         <p className="App-intro">To get started, select a date.</p>
         <div className="fl">
-          <Calendar onChange={this.onDateChange} />
+          <CalendarPanel />
         </div>
         <div className="fl">
-          <DayView selectedDate={this.state.selectedDate} />
+          <DayView />
         </div>
       </div>
     );
