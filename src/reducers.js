@@ -1,9 +1,7 @@
-import firebaseApp from "./firebase";
 import { DATE_CHANGED, EVENTS_LOADED } from "./action-types";
-import { loadEventsForDay } from "./actions";
 
 const initialState = {
-  calendarDate: "2018-05-18",
+  calendarDate: "2018-05-19",
   events: []
 };
 
@@ -14,15 +12,13 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case DATE_CHANGED:
-      var newState = { ...state, calendarDate: action.payload };
-      return newState;
+      return { ...state, calendarDate: action.payload };
     case EVENTS_LOADED:
       console.log(
         "Updating state with new events: " +
           JSON.stringify(action.payload, null, 2)
       );
-      var newState = { ...state, events: action.payload };
-      return newState;
+      return { ...state, events: action.payload };
     default:
       console.error(`Unknown action: ${action.type}`);
       return state;

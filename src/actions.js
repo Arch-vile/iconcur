@@ -1,8 +1,4 @@
-import {
-  UPDATE_PARTICIPANT,
-  DATE_CHANGED,
-  EVENTS_LOADED
-} from "./action-types";
+import { DATE_CHANGED, EVENTS_LOADED } from "./action-types";
 
 import firebase from "./firebase";
 
@@ -34,8 +30,9 @@ const loadEvents = (dispatch, forDate) => {
   const firebaseRef = database.ref(ref);
 
   firebaseRef.on("value", snap => {
-    console.log("Response from server: " + JSON.stringify(snap.val()));
-    dispatch(eventsLoaded(setRefs(snap.val(), ref)));
+    const response = snap.val() || [];
+    console.log("Response from server: " + JSON.stringify(response));
+    dispatch(eventsLoaded(setRefs(response, ref)));
   });
 };
 

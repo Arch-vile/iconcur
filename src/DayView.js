@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import Event from "./Event";
 
@@ -6,7 +6,7 @@ const DayView = ({ date, events }) => (
   <div>
     <div>Current date: {date}</div>
     {events.map(event => {
-      return <Event event={event} />;
+      return <Event key={event.ref} event={event} />;
     })}
   </div>
 );

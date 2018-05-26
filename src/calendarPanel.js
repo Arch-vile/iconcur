@@ -3,13 +3,26 @@ import { connect } from "react-redux";
 import Calendar from "rc-calendar";
 import "rc-calendar/assets/index.css";
 import { dataChanged } from "./actions";
+import moment from "moment";
 
-const CalendarPanel = props => (
-  <div>
-    Current date: {props.date}
-    <Calendar onChange={props.onChange} />
-  </div>
-);
+class CalendarPanel extends React.Component {
+  componentDidMount = () => {
+    this.props.onChange(this.props.date);
+  };
+
+  onChange = newDate => {
+    console.log("Clicked on calendar: " + newDate);
+    this.props.onChange(newDate.format("YYYY-MM-DD"));
+  };
+
+  render() {
+    return (
+      <div>
+        <Calendar value={moment(this.props.date)} onChange={this.onChange} />
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = state => {
   return {
@@ -19,10 +32,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onChange: newDate => dispatch(dataChanged(newDate.format("YYYY-MM-DD")))
+    onChange: newDate => dispatch(dataChanged(newDate))
   };
 };
 
-const foobar = connect(mapStateToProps, mapDispatchToProps)(CalendarPanel);
-
-export default foobar;
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarPanel);

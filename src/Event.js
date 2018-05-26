@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React from "react";
 import Participant from "./Participant";
 
 const Event = ({ event }) => (
@@ -10,15 +9,15 @@ const Event = ({ event }) => (
     <hr />
     {event.participants &&
       event.participants.map(participant => (
-        <Participant participant={participant} />
+        <Participant key={participant.ref} participant={participant} />
       ))}
     <div>
       <h2>Comments:</h2>
       <em>
         {event.comments &&
-          event.comments.map((e, i) => (
-            <div>
-              <span>{e.text}</span>
+          event.comments.map(c => (
+            <div key={c.ref}>
+              <span>{c.text}</span>
               <br />
             </div>
           ))}

@@ -1,5 +1,5 @@
 import "rc-slider/assets/index.css";
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { updateParticipant } from "./actions";
 
