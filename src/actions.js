@@ -22,6 +22,12 @@ export const dataChanged = newDate => dispatch => {
   loadEvents(dispatch, newDate);
 };
 
+export const addParticipant = (event, name) => {
+  const ref = event.ref + "/participants";
+  addDocument(ref, { name: name });
+  return { type: "DUMMY" };
+};
+
 const loadEvents = (dispatch, forDate) => {
   const ref = "events/" + forDate;
 
@@ -42,6 +48,14 @@ const setDocument = (ref, document) => {
   console.log("Saving document with ref: " + firebaseRef);
   console.log("Saving document: " + JSON.stringify(document, null, 2));
   firebaseRef.set(document);
+};
+
+const addDocument = (ref, document) => {
+  const database = firebase.database();
+  const firebaseRef = database.ref(ref);
+  console.log("Adding document with ref: " + firebaseRef);
+  console.log("Adding document: " + JSON.stringify(document, null, 2));
+  firebaseRef.push(document);
 };
 
 // Firebase does not have arrays of objects with ids, but instead map of objects with id as key

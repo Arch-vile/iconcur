@@ -2,10 +2,14 @@ import React from "react";
 import TimeSlider from "./slider";
 
 const Participant = ({ participant }) => (
-  <div>
-    <div className="fl">{participant.name}</div>
-    <TimeSlider participant={participant} />
-  </div>
+  <tr>
+    <td>
+      <div className="fl">{participant.name}</div>
+    </td>
+    <td>
+      <TimeSlider participant={participant} />
+    </td>
+  </tr>
 );
 
 export default Participant;
