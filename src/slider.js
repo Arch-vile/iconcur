@@ -49,7 +49,7 @@ class TimeSlider extends React.Component {
 
   render() {
     return (
-      <div className="fl">
+      <div className="fl mr2">
         <div style={style}>
           <Slider.Range
             min={9}
