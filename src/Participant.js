@@ -19,7 +19,9 @@ class Participant extends React.Component {
           <TimeSlider participant={this.props.participant} />
         </td>
         <td>
-          <button onClick={this.remove}>Remove</button>
+          <button className="red" onClick={this.remove}>
+            Remove
+          </button>
         </td>
       </tr>
     );

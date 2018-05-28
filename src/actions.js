@@ -45,6 +45,11 @@ export const addEvent = (date, description, location) => {
   return { type: "DUMMY" };
 };
 
+export const removeEvent = event => {
+  removeDocument(event.ref);
+  return { type: "DUMMY" };
+};
+
 const loadEvents = (dispatch, forDate) => {
   const ref = "events/" + forDate;
 
