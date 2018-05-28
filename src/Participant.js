@@ -11,19 +11,15 @@ class Participant extends React.Component {
 
   render() {
     return (
-      <tr>
-        <td>
-          <div className="fl">{this.props.participant.name}</div>
-        </td>
-        <td>
+      <div className="h3">
+        <div className="ac">
+          {this.props.participant.name}
+          <img src="delete.png" className="icon" onClick={this.remove} />
+        </div>
+        <div className="">
           <TimeSlider participant={this.props.participant} />
-        </td>
-        <td>
-          <button className="red" onClick={this.remove}>
-            Remove
-          </button>
-        </td>
-      </tr>
+        </div>
+      </div>
     );
   }
 }

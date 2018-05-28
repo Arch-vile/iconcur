@@ -20,24 +20,16 @@ class Event extends React.Component {
       <div className="event">
         <h2>
           {this.props.event.description} @ {this.props.event.location}
-          <button className="red" onClick={this.removeEvent}>
-            Remove
-          </button>
+          <img src="delete.png" className="icon" onClick={this.removeEvent} />
         </h2>
         <hr />
         <div>
-          <table>
-            <tbody>
-              {this.props.event.participants &&
-                this.props.event.participants.map(participant => (
-                  <Participant
-                    key={participant.ref}
-                    participant={participant}
-                  />
-                ))}
-            </tbody>
-          </table>
+          {this.props.event.participants &&
+            this.props.event.participants.map(participant => (
+              <Participant key={participant.ref} participant={participant} />
+            ))}
         </div>
+        <br />
         <NewParticipantForm event={this.props.event} />
         <div className="al">
           <h2>Comments:</h2>

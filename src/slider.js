@@ -5,20 +5,16 @@ import { updateParticipant } from "./actions";
 
 import Slider from "rc-slider";
 
-const style = { width: 400, marginLeft: 20, marginBottom: 20 };
 const marks = {
-  "9": "09:00",
-  "10": "10:00",
-  "11": "11:00",
-  "12": "12:00",
-  "13": "13:00",
-  "14": "14:00",
-  "15": "15:00",
-  "16": "16:00",
-  "17": "17:00",
-  "18": "18:00",
-  "19": "19:00",
-  "20": "20:00"
+  "12": "12",
+  "13": "13",
+  "14": "14",
+  "15": "15",
+  "16": "16",
+  "17": "17",
+  "18": "18",
+  "19": "19",
+  "20": "20"
 };
 
 class TimeSlider extends React.Component {
@@ -49,18 +45,17 @@ class TimeSlider extends React.Component {
 
   render() {
     return (
-      <div className="fl mr2">
-        <div style={style}>
-          <Slider.Range
-            min={9}
-            max={20}
-            marks={marks}
-            step={0.5}
-            onChange={this.valueChange}
-            defaultValue={[9, 12]}
-            value={[this.state.start || 9, this.state.end || 12]}
-          />
-        </div>
+      <div className="slider">
+        <Slider.Range
+          vertical={false}
+          min={12}
+          max={20}
+          marks={marks}
+          step={0.5}
+          onChange={this.valueChange}
+          defaultValue={[18, 20]}
+          value={[this.state.start || 18, this.state.end || 20]}
+        />
       </div>
     );
   }
