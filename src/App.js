@@ -8,7 +8,11 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">iConcur</h1>
+          <h1 className="App-title">
+            <img height={30} src="sun.png" />
+            Pollin kesäultimate
+            <img height={30} src="sun.png" />
+          </h1>
         </header>
         <div className="fl">
           <CalendarPanel />

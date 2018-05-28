@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: #ddd;
 }
 
 .fl {
@@ -36,4 +37,11 @@ button.red {
 input[type="submit"] {
   color: white;
   background-color: green;
+}
+
+div.event {
+  background-color: white;
+  border: 1px dotted;
+  padding: 20px;
+  margin: 10px;
 }

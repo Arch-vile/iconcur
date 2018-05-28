@@ -17,7 +17,7 @@ class Event extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="event">
         <h2>
           {this.props.event.description} @ {this.props.event.location}
           <button className="red" onClick={this.removeEvent}>
