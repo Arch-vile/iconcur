@@ -1,6 +1,7 @@
 import React from "react";
 import Participant from "./Participant";
 import NewParticipantForm from "./NewParticipantForm";
+import NewCommentForm from "./NewCommenForm";
 
 const Event = ({ event }) => (
   <div>
@@ -19,7 +20,7 @@ const Event = ({ event }) => (
       </table>
     </div>
     <NewParticipantForm event={event} />
-    <div>
+    <div className="al">
       <h2>Comments:</h2>
       <em>
         {event.comments &&
@@ -30,6 +31,7 @@ const Event = ({ event }) => (
             </div>
           ))}
       </em>
+      <NewCommentForm event={event} />
     </div>
   </div>
 );

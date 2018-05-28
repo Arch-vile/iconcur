@@ -33,6 +33,12 @@ export const removeParticipant = participant => {
   return { type: "DUMMY" };
 };
 
+export const addComment = (event, comment) => {
+  const ref = event.ref + "/comments";
+  addDocument(ref, { text: comment, timestamp: new Date() });
+  return { type: "DUMMY" };
+};
+
 const loadEvents = (dispatch, forDate) => {
   const ref = "events/" + forDate;
 
