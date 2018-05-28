@@ -4,7 +4,7 @@ import Event from "./Event";
 
 const DayView = ({ date, events }) => (
   <div>
-    <div>Current date: {date}</div>
+    <h1>{date}</h1>
     {events.map(event => {
       return <Event key={event.ref} event={event} />;
     })}

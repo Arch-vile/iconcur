@@ -1,15 +1,35 @@
 import React from "react";
 import TimeSlider from "./slider";
+import { connect } from "react-redux";
 
-const Participant = ({ participant }) => (
-  <tr>
-    <td>
-      <div className="fl">{participant.name}</div>
-    </td>
-    <td>
-      <TimeSlider participant={participant} />
-    </td>
-  </tr>
-);
+import { removeParticipant } from "./actions";
 
-export default Participant;
+class Participant extends React.Component {
+  remove = () => {
+    this.props.removeParticipant(this.props.participant);
+  };
+
+  render() {
+    return (
+      <tr>
+        <td>
+          <div className="fl">{this.props.participant.name}</div>
+        </td>
+        <td>
+          <TimeSlider participant={this.props.participant} />
+        </td>
+        <td>
+          <button onClick={this.remove}>Remove</button>
+        </td>
+      </tr>
+    );
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    removeParticipant: participant => dispatch(removeParticipant(participant))
+  };
+};
+
+export default connect(state => state, mapDispatchToProps)(Participant);
