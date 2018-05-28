@@ -6,7 +6,7 @@ import NewCommentForm from "./NewCommenForm";
 const Event = ({ event }) => (
   <div>
     <h2>
-      {event.description} - {event.location}
+      {event.description} @ {event.location}
     </h2>
     <hr />
     <div>

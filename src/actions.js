@@ -39,6 +39,12 @@ export const addComment = (event, comment) => {
   return { type: "DUMMY" };
 };
 
+export const addEvent = (date, description, location) => {
+  const ref = "events/" + date;
+  addDocument(ref, { description: description, location: location });
+  return { type: "DUMMY" };
+};
+
 const loadEvents = (dispatch, forDate) => {
   const ref = "events/" + forDate;
 

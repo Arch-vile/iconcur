@@ -17,7 +17,7 @@ class CalendarPanel extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="m2">
         <Calendar value={moment(this.props.date)} onChange={this.onChange} />
       </div>
     );

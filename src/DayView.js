@@ -1,13 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 import Event from "./Event";
+import NewEventForm from "./NewEventForm";
 
 const DayView = ({ date, events }) => (
-  <div>
+  <div className="mb2">
     <h1>{date}</h1>
     {events.map(event => {
       return <Event key={event.ref} event={event} />;
     })}
+    <hr />
+    <NewEventForm />
   </div>
 );
 
