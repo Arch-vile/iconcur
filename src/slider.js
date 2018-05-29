@@ -14,7 +14,8 @@ const marks = {
   "17": "17",
   "18": "18",
   "19": "19",
-  "20": "20"
+  "20": "20",
+  "21": "21"
 };
 
 class TimeSlider extends React.Component {
@@ -49,7 +50,7 @@ class TimeSlider extends React.Component {
         <Slider.Range
           vertical={false}
           min={12}
-          max={20}
+          max={21}
           marks={marks}
           step={0.5}
           onChange={this.valueChange}
