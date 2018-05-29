@@ -5,6 +5,11 @@ body {
   background-color: #ddd;
 }
 
+div.App {
+  margin: auto;
+  max-width: 500px;
+}
+
 .fl {
   float: left;
 }
@@ -35,6 +40,10 @@ body {
 
 .h3 {
   height: 3em;
+}
+
+.mw5 {
+  max-width: 500px;
 }
 
 button {
