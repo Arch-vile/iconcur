@@ -2,8 +2,14 @@ import React, { Component } from "react";
 import "./App.css";
 import CalendarPanel from "./calendarPanel";
 import DayView from "./DayView";
+import { dataChanged } from "./actions";
+import { connect } from "react-redux";
 
 class App extends Component {
+  componentDidMount = () => {
+    this.props.setDate(this.props.date);
+  };
+
   render() {
     return (
       <div className="App">
@@ -15,9 +21,6 @@ class App extends Component {
           </h1>
         </header>
         <div className="fl">
-          <CalendarPanel />
-        </div>
-        <div className="fl">
           <DayView />
         </div>
       </div>
@@ -25,4 +28,16 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    date: state.calendarDate
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setDate: newDate => dispatch(dataChanged(newDate))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

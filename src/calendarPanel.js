@@ -6,10 +6,6 @@ import { dataChanged } from "./actions";
 import moment from "moment";
 
 class CalendarPanel extends React.Component {
-  componentDidMount = () => {
-    this.props.onChange(this.props.date);
-  };
-
   onChange = newDate => {
     console.log("Clicked on calendar: " + newDate);
     this.props.onChange(newDate.format("YYYY-MM-DD"));
