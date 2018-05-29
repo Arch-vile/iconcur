@@ -20,8 +20,22 @@ class App extends Component {
             <img height={30} src="sun.png" />
           </h1>
         </header>
-        <div className="fl">
+        <div>
           <DayView />
+        </div>
+        <hr />
+        <div>
+          <h4>Tips and tricks</h4>
+          <ul>
+            <li className="al">
+              URL will change when you change date, so you can share a link to
+              the day by just copying the url.
+            </li>
+            <li className="al">
+              Page will autoreload the data, so there is no need for you to
+              reload.
+            </li>
+          </ul>
         </div>
       </div>
     );
