@@ -22,6 +22,9 @@ class NewParticipantForm extends React.Component {
 
   render() {
     return (
+      <div>
+      <br/>
+      <span>To participate, first add your name: </span>
       <form onSubmit={this.handleSubmit}>
         <input
           placeholder="Name"
@@ -30,6 +33,7 @@ class NewParticipantForm extends React.Component {
         />
         <input type="submit" value="Add me!" />
       </form>
+      </div>
     );
   }
 }
