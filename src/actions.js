@@ -25,13 +25,17 @@ export const dataChanged = newDate => dispatch => {
 export const addParticipant = (event, name) => {
   const ref = event.ref + "/participants";
   addDocument(ref, { name: name });
-  return { type: "DUMMY" };
+  return { type: "EDIT_MODE", payload: {name: name} };
 };
 
 export const removeParticipant = participant => {
   removeDocument(participant.ref);
   return { type: "DUMMY" };
 };
+
+export const makeParticipantEditable = participant => {
+  return { type: "EDIT_MODE", payload: participant };
+}
 
 export const addComment = (event, comment) => {
   const ref = event.ref + "/comments";

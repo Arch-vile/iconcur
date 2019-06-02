@@ -13,6 +13,7 @@ const currentDate = () => {
 const initialState = {
   calendarDate: fromUrl() || currentDate(),
   events: [],
+  editablePlayers: [],
   loading: false
 };
 
@@ -28,7 +29,10 @@ const rootReducer = (state = initialState, action) => {
           JSON.stringify(action.payload, null, 2)
       );
       return { ...state, events: action.payload, loading: false };
-    default:
+    case 'EDIT_MODE':
+      const changed = [...state.editablePlayers, action.payload.name];
+      return {...state, editablePlayers: changed};
+      default:
       console.error(`Unknown action: ${action.type}`);
       return state;
   }

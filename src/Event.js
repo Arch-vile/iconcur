@@ -30,7 +30,7 @@ class Event extends React.Component {
         <div>
           {this.props.event.participants &&
             this.props.event.participants.map(participant => (
-              <Participant key={participant.ref} participant={participant} />
+              <Participant key={participant.ref} participant={participant} editable={ this.props.editablePlayers.includes(participant.name)   }/>
             ))}
         </div>
         <br />
@@ -40,10 +40,10 @@ class Event extends React.Component {
           <em>
             {this.props.event.comments &&
               this.props.event.comments.map(c => (
-                <div key={c.ref}>
-                  <span>{c.text}</span>
+                <ul key={c.ref}>
+                  <li>{c.text}</li>
                   <br />
-                </div>
+                </ul>
               ))}
           </em>
           <NewCommentForm event={this.props.event} />
@@ -52,6 +52,11 @@ class Event extends React.Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    editablePlayers: state.editablePlayers
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -59,4 +64,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(state => state, mapDispatchToProps)(Event);
+export default connect(mapStateToProps, mapDispatchToProps)(Event);

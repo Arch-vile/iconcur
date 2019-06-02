@@ -21,10 +21,11 @@ const marks = {
 class TimeSlider extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { ...props.participant };
+    this.state = { ...props.participant};
     this.valueChange = this.valueChange.bind(this);
   }
 
+  // TODO: lets try to understand why we do this
   static getDerivedStateFromProps(props, state) {
     return { ...props.participant };
   }
@@ -54,6 +55,7 @@ class TimeSlider extends React.Component {
           marks={marks}
           step={0.5}
           onChange={this.valueChange}
+          disabled={!this.props.editable}
           defaultValue={[18, 20]}
           value={[this.state.start || 18, this.state.end || 20]}
         />
