@@ -22,6 +22,7 @@ class NewParticipantForm extends React.Component {
 
   render() {
     return (
+      <hr/>
       <div>
       <br/>
       <span>To participate, first add your name: </span>
@@ -34,6 +35,7 @@ class NewParticipantForm extends React.Component {
         <input type="submit" value="Add me!" />
       </form>
       </div>
+      </hr>
     );
   }
 }
