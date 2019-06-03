@@ -82,3 +82,7 @@ div.slider {
 img.icon {
   height: 15px;
 }
+
+div.rc-slider-track.rc-slider-track-1 {
+  background-color: #3f916b;
+}
