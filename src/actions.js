@@ -33,7 +33,7 @@ export const removeParticipant = participant => {
   return { type: "DUMMY" };
 };
 
-export const makeParticipantEditable = participant => {
+export const togglePlayerEditability = participant => {
   return { type: "EDIT_MODE", payload: participant };
 }
 

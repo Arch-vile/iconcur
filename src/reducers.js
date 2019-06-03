@@ -30,9 +30,14 @@ const rootReducer = (state = initialState, action) => {
       );
       return { ...state, events: action.payload, loading: false };
     case 'EDIT_MODE':
-      const changed = [...state.editablePlayers, action.payload.name];
-      return {...state, editablePlayers: changed};
-      default:
+
+      const player = action.payload;
+      if(state.editablePlayers.includes(player.name)) {
+        return {...state,  editablePlayers: [ state.editablePlayers.filter(it => it.name !== player.name)  ] }
+      } else {
+        return {...state,  editablePlayers: [  ...state.editablePlayers, player.name ] }
+      }
+     default:
       console.error(`Unknown action: ${action.type}`);
       return state;
   }

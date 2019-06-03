@@ -20,7 +20,7 @@ class Event extends React.Component {
       <div className="event">
         <h2>
           {this.props.event.description} @ {this.props.event.location}
-          <img src="delete.png" className="icon" onClick={this.removeEvent} />
+          { /* <img src="delete.png" className="icon" onClick={this.removeEvent} /> */}
         </h2>
         <h4>
           {this.props.event.participants &&

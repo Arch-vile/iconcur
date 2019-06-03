@@ -2,7 +2,7 @@ import React from "react";
 import TimeSlider from "./slider";
 import { connect } from "react-redux";
 
-import {makeParticipantEditable, removeParticipant} from "./actions";
+import {togglePlayerEditability, removeParticipant} from "./actions";
 
 class Participant extends React.Component {
   remove = () => {
@@ -10,15 +10,24 @@ class Participant extends React.Component {
   };
 
   edit = () => {
-    this.props.makeParticipantEditable(this.props.participant);
+    this.props.togglePlayerEdit(this.props.participant);
   };
+
+  cancel = () => {
+    this.props.togglePlayerEdit(this.props.participant);
+  }
 
   render() {
     return (
       <div className="h3">
         <div className="ac">
           {this.props.participant.name}&nbsp;
-          { this.props.editable && <img src="delete.png" className="icon" onClick={this.remove} />}
+          { this.props.editable &&
+          <span>
+            <input type="submit" value="Delete" className='red' onClick={this.remove} />
+            <input type="submit" value="OK" onClick={this.cancel} />
+          </span>
+            }
           { !this.props.editable && <input type="submit" value="Edit" onClick={this.edit} /> }
         </div>
         <div className="">
@@ -32,7 +41,7 @@ class Participant extends React.Component {
 const mapDispatchToProps = dispatch => {
   return {
     removeParticipant: participant => dispatch(removeParticipant(participant)),
-    makeParticipantEditable: participant => dispatch(makeParticipantEditable(participant))
+    togglePlayerEdit: participant => dispatch(togglePlayerEditability(participant))
   };
 };
 

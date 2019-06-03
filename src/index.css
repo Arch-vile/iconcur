@@ -55,6 +55,10 @@ button.red {
   background-color: red;
 }
 
+input[type="submit"].red {
+  background-color: red;
+}
+
 input[type="submit"] {
   color: white;
   background-color: green;
