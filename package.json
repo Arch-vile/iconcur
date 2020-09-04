@@ -6,7 +6,7 @@
     "ajv": "^6.5.0",
     "firebase": "^5.0.3",
     "immutable": "^3.8.2",
-    "mongodb": "^3.1.0-beta4",
+    "mongodb": "^3.1.13",
     "rc-calendar": "^9.6.0",
     "rc-slider": "^8.6.1",
     "react": "^16.3.2",
